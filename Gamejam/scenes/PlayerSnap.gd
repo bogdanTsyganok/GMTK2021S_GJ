@@ -38,6 +38,8 @@ func receiveCords(id):
 	
 
 func _process(delta):
+	if tween.is_active() or !selected:
+		return
 	if Input.is_action_just_pressed("switch"):
 			selected = !selected
 	if Input.is_action_just_pressed("use"):
@@ -52,12 +54,14 @@ func _process(delta):
 					body.use()
 	if Input.is_action_just_pressed("place"):
 		var scene = load("res://scenes/WallMirror.tscn")
-		var mirObject = scene.instance()
-		mirObject.set_pos(position + oldDir * tileSize)
-		get_tree().call_group("map", "sendCordsNoNotify", (position + oldDir * tileSize))
-		add_child(mirObject)
-	if tween.is_active() or !selected:
-		return
+		#var mirObject = scene.instance()
+		var pos = (position + oldDir * tileSize)
+		
+		get_tree().call_group("map", "spawnObject", (position))
+		#add_child(mirObject)
+		#mirObject.place(oldDir * tileSize)
+		print(position)
+	
 	for dir in inputs.keys():
 		if Input.is_action_pressed(dir):
 			oldDir = inputs[dir]

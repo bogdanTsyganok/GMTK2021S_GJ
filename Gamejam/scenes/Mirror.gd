@@ -13,6 +13,9 @@ func _ready():
 func use():
 	print("mirror")
 	queue_free()
+	
+func place(var pos):
+	position += pos
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
