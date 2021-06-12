@@ -12,8 +12,10 @@ var tiles = {"ice": 3,
 var oldDir = Vector2.UP
 
 var mirrorsHeld = 0
+var onMirror = false
 
 onready var ray = $RayCast2D
+onready var floorRay = $floorCheck
 onready var tween = $Tween
 
 export var speed = 3
@@ -44,8 +46,8 @@ func _process(delta):
 	if tween.is_active() or !selected:
 		return
 	if Input.is_action_just_pressed("use"):
-		if ray.is_colliding():
-			var body = ray.get_collider()
+		if floorRay.is_colliding():
+			var body = floorRay.get_collider()
 			if body.name != "TileMap":
 				if("Mirror" in body.name ):
 					#print(body.name)
@@ -53,30 +55,35 @@ func _process(delta):
 					body.use()
 				else:
 					body.use()
-	if Input.is_action_just_pressed("place") and mirrorsHeld > 0:
-		mirrorsHeld = mirrorsHeld - 1
-		get_tree().call_group("map", "spawnObject", (position))
+	
 	
 	for dir in inputs.keys():
 		if Input.is_action_pressed(dir):
 			oldDir = inputs[dir]
 			move(inputs[dir])
+			
+	if Input.is_action_just_pressed("place") and mirrorsHeld > 0:
+		mirrorsHeld = mirrorsHeld - 1
+		get_tree().call_group("map", "spawnObject", (position))
 
 func addMirror():
 	mirrorsHeld = mirrorsHeld + 1
 
 func move(dir):
+	floorRay.cast_to = dir * tileSize
 	ray.cast_to = dir * tileSize
 	ray.force_raycast_update()
+	floorRay.force_raycast_update()
 	
 	#emit_signal("sendCords",(position + dir * tileSize))
 	if !ray.is_colliding():
 #		position += inputs[dir] * tileSize
 		move_tween(dir)
-	else :
-		var name = ray.get_collider().name
-		if "Mirror" in name:
-			move_tween(dir)
+	#else :
+	#	var name = ray.get_collider().name
+	#	if "Mirror" in name:
+	#		onMirror = true
+	#		move_tween(dir)
 	#put extraordinary blocks here
 	
 	

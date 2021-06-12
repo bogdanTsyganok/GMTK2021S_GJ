@@ -25,6 +25,10 @@ shape = SubResource( 1 )
 [node name="Tween" type="Tween" parent="."]
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
+collision_mask = 2
+collide_with_areas = true
+
+[node name="floorCheck" type="RayCast2D" parent="."]
 collide_with_areas = true
 
 [connection signal="area_entered" from="." to="." method="_on_Area2D_area_entered"]
