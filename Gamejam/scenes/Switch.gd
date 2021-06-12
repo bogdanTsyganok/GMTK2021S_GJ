@@ -1,21 +1,24 @@
-extends TileMap
+extends Area2D
 
 
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
 
+onready var animation = $AnimatedSprite
+
+export var doorName = ""
+export var useable = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
-func sendCords(cords):
-	var pos = world_to_map(cords)
-	var rtn = get_cell(pos.x, pos.y)
-	print(pos)
-	get_tree().call_group("player","receiveCords", rtn)
-	get_tree().call_group("ghost","receiveCords", rtn)
+func use():
+	if useable: 
+		print(doorName)
+		animation.play("used")
+		#get_tree().call_group(door,"open")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

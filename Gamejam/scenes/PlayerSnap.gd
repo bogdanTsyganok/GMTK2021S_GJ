@@ -37,6 +37,12 @@ func receiveCords(id):
 func _process(delta):
 	if Input.is_action_just_pressed("switch"):
 			selected = !selected
+	if Input.is_action_just_pressed("use"):
+		if ray.is_colliding():
+			var body = ray.get_collider()
+			if body.name != "TileMap":
+				#print(body.name)
+				body.use()
 	if tween.is_active() or !selected:
 		return
 	for dir in inputs.keys():
@@ -53,7 +59,8 @@ func move(dir):
 	if !ray.is_colliding():
 #		position += inputs[dir] * tileSize
 		move_tween(dir)
-	#get_tree().call_group("map", "sendCords", (position + dir * tileSize))
+	#put extraordinary blocks here
+	
 	
 
 func move_tween(dir):
