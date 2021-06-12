@@ -17,6 +17,7 @@ onready var tween = $Tween
 export var speed = 3
 export var selected = true
 
+
 signal sendCords(cords)
 
 
@@ -41,8 +42,11 @@ func _process(delta):
 		if ray.is_colliding():
 			var body = ray.get_collider()
 			if body.name != "TileMap":
-				#print(body.name)
-				body.use()
+				if(body.name == "Mirror"):
+					print(body.name)
+					
+				else:
+					body.use()
 	if tween.is_active() or !selected:
 		return
 	for dir in inputs.keys():
