@@ -56,7 +56,7 @@ func move(dir):
 		move_tween(dir)
 	else :
 		var name = ray.get_collider().name
-		if name != "Player":
+		if name != "Player" and name != "TileMap":
 			move_tween(dir)
 			
 	#get_tree().call_group("map", "sendCords", (position + dir * tileSize))
