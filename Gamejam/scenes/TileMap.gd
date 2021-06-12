@@ -5,6 +5,7 @@ extends TileMap
 # var a = 2
 # var b = "text"
 
+var placedMirrors = 2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,10 +26,18 @@ func sendCordsNoNotify(cords):
 func spawnObject(cords):
 	var pos = world_to_map(cords)
 	var scene = load("res://scenes/Mirror.tscn")
+	var secondMirror = load("res://scenes/GhostPortal.tscn")
+	var portalObj = secondMirror.instance()
 	var mirObject = scene.instance()
+	portalObj.place(cords)
 	mirObject.place(cords)
 	add_child(mirObject)
+	mirObject.add_child(portalObj)
 	
+	placedMirrors = placedMirrors + 1
+	
+func takeMirror():
+	placedMirrors = placedMirrors - 1
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

@@ -48,6 +48,7 @@ func _process(delta):
 			if body.name != "TileMap":
 				if("Mirror" in body.name ):
 					#print(body.name)
+					get_tree().call_group("map", "takeMirror")
 					body.use()
 				else:
 					body.use()

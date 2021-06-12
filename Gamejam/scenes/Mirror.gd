@@ -17,6 +17,7 @@ func use():
 	
 func place(var pos):
 	position += pos
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
