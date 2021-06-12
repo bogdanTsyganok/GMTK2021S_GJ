@@ -16,7 +16,11 @@ func sendCords(cords):
 	print(pos)
 	get_tree().call_group("player","receiveCords", rtn)
 	get_tree().call_group("ghost","receiveCords", rtn)
-
+	
+func sendCordsNoNotify(cords):
+	var pos = world_to_map(cords)
+	var rtn = get_cell(pos.x, pos.y)
+	print(pos)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

@@ -11,6 +11,8 @@ var tiles = {"ice": 3,
 			
 var oldDir = Vector2.UP
 
+var mirrorsHeld = 0
+
 onready var ray = $RayCast2D
 onready var tween = $Tween
 
@@ -43,10 +45,17 @@ func _process(delta):
 			var body = ray.get_collider()
 			if body.name != "TileMap":
 				if(body.name == "Mirror"):
-					print(body.name)
-					
+					#print(body.name)
+					mirrorsHeld=mirrorsHeld + 1
+					print("Have" + str(mirrorsHeld) + " mirrors")
 				else:
 					body.use()
+	if Input.is_action_just_pressed("place"):
+		var scene = load("res://scenes/WallMirror.tscn")
+		var mirObject = scene.instance()
+		mirObject.set_pos(position + oldDir * tileSize)
+		get_tree().call_group("map", "sendCordsNoNotify", (position + oldDir * tileSize))
+		add_child(mirObject)
 	if tween.is_active() or !selected:
 		return
 	for dir in inputs.keys():
