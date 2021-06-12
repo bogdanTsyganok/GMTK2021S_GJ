@@ -24,7 +24,7 @@ func sendCordsNoNotify(cords):
 
 func spawnObject(cords):
 	var pos = world_to_map(cords)
-	var scene = load("res://scenes/WallMirror.tscn")
+	var scene = load("res://scenes/Mirror.tscn")
 	var mirObject = scene.instance()
 	mirObject.place(cords)
 	add_child(mirObject)

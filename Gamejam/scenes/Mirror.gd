@@ -12,6 +12,7 @@ func _ready():
 
 func use():
 	print("mirror")
+	get_tree().call_group("player", "addMirror")
 	queue_free()
 	
 func place(var pos):
@@ -21,3 +22,8 @@ func place(var pos):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+
+func _on_Area2D_area_entered(area):
+	print("hello")
+	pass # Replace with function body.

@@ -46,27 +46,22 @@ func _process(delta):
 		if ray.is_colliding():
 			var body = ray.get_collider()
 			if body.name != "TileMap":
-				if(body.name == "Mirror"):
+				if("Mirror" in body.name ):
 					#print(body.name)
-					mirrorsHeld=mirrorsHeld + 1
-					print("Have" + str(mirrorsHeld) + " mirrors")
+					body.use()
 				else:
 					body.use()
-	if Input.is_action_just_pressed("place"):
-		var scene = load("res://scenes/WallMirror.tscn")
-		#var mirObject = scene.instance()
-		var pos = (position + oldDir * tileSize)
-		
+	if Input.is_action_just_pressed("place") and mirrorsHeld > 0:
+		mirrorsHeld = mirrorsHeld - 1
 		get_tree().call_group("map", "spawnObject", (position))
-		#add_child(mirObject)
-		#mirObject.place(oldDir * tileSize)
-		print(position)
 	
 	for dir in inputs.keys():
 		if Input.is_action_pressed(dir):
 			oldDir = inputs[dir]
 			move(inputs[dir])
-	
+
+func addMirror():
+	mirrorsHeld = mirrorsHeld + 1
 
 func move(dir):
 	ray.cast_to = dir * tileSize
@@ -76,6 +71,10 @@ func move(dir):
 	if !ray.is_colliding():
 #		position += inputs[dir] * tileSize
 		move_tween(dir)
+	else :
+		var name = ray.get_collider().name
+		if "Mirror" in name:
+			move_tween(dir)
 	#put extraordinary blocks here
 	
 	
@@ -91,3 +90,8 @@ func move_tween(dir):
 
 func _on_Tween_tween_completed(object, key):
 	get_tree().call_group("map", "sendCords", (position))
+
+
+func _on_Area2D_area_entered(area):
+	print("item")
+	pass # Replace with function body.

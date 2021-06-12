@@ -9,7 +9,6 @@ extents = Vector2( 8.17811, 8.42518 )
 [node name="Area2D" type="Area2D" groups=[
 "player",
 ]]
-collision_layer = 3
 script = ExtResource( 2 )
 __meta__ = {
 "_editor_description_": "player"
@@ -28,4 +27,5 @@ shape = SubResource( 1 )
 [node name="RayCast2D" type="RayCast2D" parent="."]
 collide_with_areas = true
 
+[connection signal="area_entered" from="." to="." method="_on_Area2D_area_entered"]
 [connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]

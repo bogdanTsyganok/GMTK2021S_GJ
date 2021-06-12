@@ -43,3 +43,8 @@ open = true
 
 [node name="Mirror1" parent="." instance=ExtResource( 5 )]
 position = Vector2( 376, 408 )
+z_index = -1
+
+[node name="Mirror" parent="." instance=ExtResource( 5 )]
+position = Vector2( 424, 328 )
+z_index = -1
