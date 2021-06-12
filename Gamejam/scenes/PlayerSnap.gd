@@ -38,10 +38,11 @@ func receiveCords(id):
 	
 
 func _process(delta):
-	if tween.is_active() or !selected:
-		return
+	
 	if Input.is_action_just_pressed("switch"):
 			selected = !selected
+	if tween.is_active() or !selected:
+		return
 	if Input.is_action_just_pressed("use"):
 		if ray.is_colliding():
 			var body = ray.get_collider()
