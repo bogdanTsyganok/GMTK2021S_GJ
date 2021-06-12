@@ -7,16 +7,24 @@ extends Area2D
 onready var animation = $AnimatedSprite
 onready var colider = $CollisionShape2D
 
+export var open = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if open:
+		animation.play("open")
+		colider.disabled = open
 	pass # Replace with function body.
 
 func open():
-	animation.play()
-	colider.disabled = true
+	if colider.disabled:
+		animation.play("open", true)
+	else:
+		animation.play("open")
+	colider.disabled = !colider.disabled
 	
 func use():
-	pass
+	print("knock knock")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

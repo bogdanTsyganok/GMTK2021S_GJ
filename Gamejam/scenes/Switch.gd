@@ -9,6 +9,7 @@ onready var animation = $AnimatedSprite
 
 export var doorName = ""
 export var useable = true
+export var on = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,7 +18,8 @@ func _ready():
 func use():
 	if useable: 
 		print(doorName)
-		animation.play("used")
+		animation.play("used", on)
+		on = !on
 		get_tree().call_group(doorName,"open")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
