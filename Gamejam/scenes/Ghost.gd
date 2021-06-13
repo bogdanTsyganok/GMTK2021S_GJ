@@ -56,7 +56,9 @@ func _process(delta):
 			if "Portal" in body.name:
 				get_tree().call_group("map","teleport", position)
 			else:
-				animation.play("use" + str(rng.randi_range(1,3)))
+				var anim = "use" + str(rng.randi_range(1,3))
+				print(anim)
+				animation.play(anim)
 				body.use()
 	
 	for dir in inputs.keys():
@@ -64,16 +66,16 @@ func _process(delta):
 			oldDir = inputs[dir]
 			move(inputs[dir])
 			
-	if oldDir == Vector2.LEFT:
-		animation.flip_h = false
-	elif oldDir == Vector2.RIGHT:
-		animation.flip_h = true
-		
-	if oldDir == Vector2.UP:
-		animation.play("virtical")
-		animation.flip_h = false
-	else :
-		animation.play("horizontal")
+			if oldDir == Vector2.LEFT:
+				animation.flip_h = false
+			elif oldDir == Vector2.RIGHT:
+				animation.flip_h = true
+				
+			if oldDir == Vector2.UP:
+				animation.play("virtical")
+				animation.flip_h = false
+			else :
+				animation.play("horizontal")
 
 func move(dir):
 	ray.cast_to = dir* tileSize

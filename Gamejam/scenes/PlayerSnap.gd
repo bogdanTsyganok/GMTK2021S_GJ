@@ -6,8 +6,8 @@ var inputs = {"right": Vector2.RIGHT,
 			"up": Vector2.UP,
 			"down": Vector2.DOWN}
 
-var tiles = {"ice": 3,
-			"button":4}
+var tiles = {"ice": 5,
+			"button":22}
 			
 var oldDir = Vector2.UP
 
