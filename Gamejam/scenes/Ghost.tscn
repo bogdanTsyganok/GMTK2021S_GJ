@@ -9,7 +9,7 @@ region = Rect2( 0, 16, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 2 )
-region = Rect2( 48, 16, 16, 16 )
+region = Rect2( 32, 16, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 2 )
@@ -21,7 +21,7 @@ region = Rect2( 16, 16, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 2 )
-region = Rect2( 32, 16, 16, 16 )
+region = Rect2( 48, 16, 16, 16 )
 
 [sub_resource type="SpriteFrames" id=6]
 animations = [ {
@@ -32,7 +32,7 @@ animations = [ {
 }, {
 "frames": [ SubResource( 2 ) ],
 "loop": true,
-"name": "use3",
+"name": "use2",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 3 ) ],
@@ -47,7 +47,7 @@ animations = [ {
 }, {
 "frames": [ SubResource( 5 ) ],
 "loop": true,
-"name": "use2",
+"name": "use3",
 "speed": 5.0
 } ]
 
@@ -70,7 +70,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, -2 ), Vector2( 0, 0 ) ]
 }
 
-[node name="Area2D" type="Area2D" groups=[
+[node name="Area2D2" type="Area2D" groups=[
 "ghost",
 ]]
 script = ExtResource( 1 )
@@ -98,5 +98,5 @@ autoplay = "walking"
 method_call_mode = 1
 anims/walking = SubResource( 8 )
 
-[connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]
 [connection signal="tween_completed" from="Tween" to="." method="sendCords"]
+[connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]

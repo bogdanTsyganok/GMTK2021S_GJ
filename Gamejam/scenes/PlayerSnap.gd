@@ -92,9 +92,11 @@ func _process(delta):
 			if colBody.name == "TileMap":
 				mirrorsHeld = mirrorsHeld - 1
 				get_tree().call_group("map", "spawnObject", position, oldDir)
+				get_tree().call_group("mirrorCounter", "updateMirrorText", str(mirrorsHeld))
 
 func addMirror():
 	mirrorsHeld = mirrorsHeld + 1
+	get_tree().call_group("mirrorCounter", "updateMirrorText", str(mirrorsHeld))
 
 func move(dir):
 	floorRay.cast_to = dir * tileSize
