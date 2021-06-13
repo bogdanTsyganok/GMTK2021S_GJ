@@ -13,6 +13,7 @@ export var open = false
 func _ready():
 	if open:
 		animation.play("open")
+		animation.set_frame(15)
 		colider.disabled = open
 	pass # Replace with function body.
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/TileMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/PlayerSnap.tscn" type="PackedScene" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://scenes/Ghost.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/MirrorCount.gd" type="Script" id=8]
 [ext_resource path="res://TitleScreen/BitFont12.tres" type="DynamicFont" id=9]
+[ext_resource path="res://scenes/HumanEndGate.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/GhostEndGate.tscn" type="PackedScene" id=11]
 
 [node name="Node" type="Node"]
 
@@ -35,7 +37,7 @@ __meta__ = {
 }
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 408, 440 )
+position = Vector2( 424, 424 )
 speed = 10
 
 [node name="TileMap" parent="." instance=ExtResource( 1 )]
@@ -57,7 +59,7 @@ position = Vector2( 360, 424 )
 position = Vector2( 192, 0 )
 
 [node name="Ghost" parent="." instance=ExtResource( 7 )]
-position = Vector2( 648, 440 )
+position = Vector2( 616, 424 )
 speed = 10
 
 [node name="Switch" parent="." instance=ExtResource( 3 )]
@@ -79,3 +81,11 @@ z_index = -1
 [node name="Area2D" parent="." instance=ExtResource( 3 )]
 position = Vector2( 600, 440 )
 doorName = "door"
+
+[node name="HEnd" parent="." instance=ExtResource( 10 )]
+position = Vector2( 440, 264 )
+z_index = -1
+
+[node name="GEnd" parent="." instance=ExtResource( 11 )]
+position = Vector2( 632, 264 )
+z_index = -1

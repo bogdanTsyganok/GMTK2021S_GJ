@@ -7,11 +7,23 @@ extends TileMap
 
 var placedMirrors = 2
 
-
+var endCheck = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
+
+func end():
+	get_tree().call_group("endGate", "check")
+	print("swap")
+	
+func actualEnd():
+	endCheck = endCheck + 1
+	
+	if endCheck == 2:
+		print("good") #signal end level here
+	else:
+		endCheck = 0
 
 func sendCords(cords):
 	var pos = world_to_map(cords)

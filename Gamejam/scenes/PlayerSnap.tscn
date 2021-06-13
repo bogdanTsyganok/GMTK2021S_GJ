@@ -5,30 +5,30 @@
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
-region = Rect2( 64, 0, 16, 16 )
+region = Rect2( 96, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 1 )
-region = Rect2( 48, 0, 16, 16 )
+region = Rect2( 112, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 1 )
-region = Rect2( 96, 0, 16, 16 )
+region = Rect2( 64, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 1 )
-region = Rect2( 112, 0, 16, 16 )
+region = Rect2( 48, 0, 16, 16 )
 
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
 "frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 1 ), SubResource( 2 ) ],
 "loop": true,
-"name": "walk_h",
+"name": "walk_v",
 "speed": 10.0
 }, {
 "frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 3 ), SubResource( 4 ) ],
 "loop": true,
-"name": "walk_v",
+"name": "walk_h",
 "speed": 10.0
 } ]
 
@@ -51,7 +51,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, -0.5 ), Vector2( 0, 0 ) ]
 }
 
-[node name="Area2D2" type="Area2D" groups=[
+[node name="Player" type="Area2D" groups=[
 "player",
 ]]
 script = ExtResource( 2 )

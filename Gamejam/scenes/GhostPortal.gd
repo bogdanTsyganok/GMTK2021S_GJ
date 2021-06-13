@@ -6,6 +6,8 @@ extends Area2D
 # var b = "text"
 #onready var animationFrame = $AnimatedSprite
 
+
+
 func place(cords):
 	position += (Vector2(192, 0))
 
