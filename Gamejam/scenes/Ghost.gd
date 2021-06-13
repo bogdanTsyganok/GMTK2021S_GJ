@@ -26,6 +26,7 @@ export var speed = 3
 export var selected = false
 signal sendCords(cords)
 
+var canSwitch = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -40,8 +41,11 @@ func receiveCords(id):
 	#else if tiles["button"] == id:
 		
 
+func switched(onIce):
+	canSwitch = !onIce
+
 func _process(delta):
-	if Input.is_action_just_pressed("switch"):
+	if Input.is_action_just_pressed("switch") and canSwitch:
 			selected = !selected
 	if tween.is_active() or !selected:
 		return

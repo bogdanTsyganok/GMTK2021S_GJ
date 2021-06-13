@@ -48,9 +48,9 @@ func teleport(startPos):
 	if children.size() == 2:
 		#print("teleport noises")
 		var pos = Vector2.ZERO
-		if children[0].position == (startPos - Vector2(208, 0)):
-			pos = children[1].position + Vector2(208,0)
+		if children[0].position == (startPos - Vector2(192, 0)):
+			pos = children[1].position + Vector2(192,0)
 		else:
-			pos = children[0].position + Vector2(208,0)
+			pos = children[0].position + Vector2(192,0)
 		
 		get_tree().call_group("ghost", "teleport", pos)

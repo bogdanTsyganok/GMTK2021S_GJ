@@ -7,8 +7,11 @@ extends Area2D
 #onready var animationFrame = $AnimatedSprite
 
 func place(cords):
-	position += (Vector2(208, 0))
-	
+	position += (Vector2(192, 0))
+
+func use():
+	pass
+
 func ChangeFace(direction):
 	if direction == Vector2.UP:
 		$AnimatedSprite.set_frame(0)

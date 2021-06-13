@@ -24,6 +24,7 @@ onready var player = $AnimationPlayer
 export var speed = 3
 export var selected = true
 
+var onIce = false
 
 signal sendCords(cords)
 
@@ -38,14 +39,19 @@ func receiveCords(id):
 	#print(id)
 	if selected:
 		if tiles["ice"] == id:
+			onIce = true
 			move(oldDir)
+		else:
+			onIce = false
+		get_tree().call_group("ghost", "switched", onIce)
 	#else if tiles["button"] == id:
 	
 
 func _process(delta):
 	
-	if Input.is_action_just_pressed("switch"):
+	if Input.is_action_just_pressed("switch") and !onIce:
 			selected = !selected
+			get_tree().call_group("ghost", "switched", onIce)
 	if tween.is_active() or !selected:
 		return
 	if Input.is_action_just_pressed("use"):
@@ -101,6 +107,7 @@ func move(dir):
 #		position += inputs[dir] * tileSize
 		move_tween(dir)
 	else:
+		onIce = false
 		animation.stop()
 	
 	
@@ -116,7 +123,7 @@ func move_tween(dir):
 
 
 func _on_Tween_tween_completed(object, key):
-	get_tree().call_group("map", "sendCords", position, oldDir)
+	get_tree().call_group("map", "sendCords", position)
 	animation.stop()
 
 
