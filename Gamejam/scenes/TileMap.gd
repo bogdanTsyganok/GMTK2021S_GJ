@@ -7,6 +7,8 @@ extends TileMap
 
 var placedMirrors = 2
 
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -38,6 +40,15 @@ func spawnObject(cords):
 	
 func takeMirror():
 	placedMirrors = placedMirrors - 1
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+	
+func teleport(startPos):
+	var children = get_children()
+	if children.size() == 2:
+		#print("teleport noises")
+		var pos = Vector2.ZERO
+		if children[0].position == (startPos - Vector2(208, 0)):
+			pos = children[1].position + Vector2(208,0)
+		else:
+			pos = children[0].position + Vector2(208,0)
+		
+		get_tree().call_group("ghost", "teleport", pos)

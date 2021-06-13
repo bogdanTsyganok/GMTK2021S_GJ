@@ -48,13 +48,14 @@ func _process(delta):
 	if Input.is_action_just_pressed("use"):
 		if floorRay.is_colliding():
 			var body = floorRay.get_collider()
-			if body.name != "TileMap":
-				if("Mirror" in body.name ):
-					#print(body.name)
-					get_tree().call_group("map", "takeMirror")
-					body.use()
-				else:
-					body.use()
+			if body != null:
+				if body.name != "TileMap":
+					if("Mirror" in body.name ):
+						#print(body.name)
+						get_tree().call_group("map", "takeMirror")
+						body.use()
+					else:
+						body.use()
 	
 	
 	for dir in inputs.keys():

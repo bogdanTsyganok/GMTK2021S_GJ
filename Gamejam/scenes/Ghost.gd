@@ -13,6 +13,8 @@ var tiles = {"ice": 7,
 var oldDir = Vector2.UP
 
 onready var ray = $RayCast2D
+onready var floorRay = $FloorCheck
+
 onready var tween = $Tween
 
 export var speed = 3
@@ -36,9 +38,15 @@ func receiveCords(id):
 func _process(delta):
 	if Input.is_action_just_pressed("switch"):
 			selected = !selected
-	
 	if tween.is_active() or !selected:
 		return
+	
+	if Input.is_action_just_pressed("use"):
+		if floorRay.is_colliding():
+			var body = floorRay.get_collider()
+			if "Portal" in body.name:
+				get_tree().call_group("map","teleport", position)
+	
 	for dir in inputs.keys():
 		if Input.is_action_pressed(dir):
 			oldDir = inputs[dir]
@@ -49,15 +57,17 @@ func _process(delta):
 func move(dir):
 	ray.cast_to = dir* tileSize
 	ray.force_raycast_update()
+	floorRay.cast_to = dir* tileSize
+	floorRay.force_raycast_update()
 	
 	#emit_signal("sendCords",(position + dir * tileSize))
 	if !ray.is_colliding():
 #		position += inputs[dir] * tileSize
 		move_tween(dir)
-	else :
-		var name = ray.get_collider().name
-		if name != "Player" and name != "TileMap":
-			move_tween(dir)
+	#else :
+	#	var name = ray.get_collider().name
+	#	if name != "Player" and name != "TileMap":
+	#		move_tween(dir)
 			
 	#get_tree().call_group("map", "sendCords", (position + dir * tileSize))
 	
@@ -68,7 +78,8 @@ func move_tween(dir):
 		1.0/speed, Tween.TRANS_LINEAR)
 	tween.start()
 
-	
+func teleport(pos):
+	position = pos
 
 
 func _on_Tween_tween_completed(object, key):
