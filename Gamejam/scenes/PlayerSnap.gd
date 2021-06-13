@@ -19,6 +19,7 @@ onready var floorRay = $floorCheck
 onready var tween = $Tween
 
 onready var animation = $AnimatedSprite
+onready var player = $AnimationPlayer
 
 export var speed = 3
 export var selected = true
@@ -63,6 +64,19 @@ func _process(delta):
 	for dir in inputs.keys():
 		if Input.is_action_pressed(dir):
 			oldDir = inputs[dir]
+			
+			if oldDir == Vector2.LEFT:
+				animation.flip_h = false
+			elif oldDir == Vector2.RIGHT:
+				animation.flip_h = true
+			
+			if oldDir == Vector2.UP:
+				animation.play("walk_v")
+			else :
+				animation.play("walk_h")
+			
+			player.play("bobbing")
+			
 			move(inputs[dir])
 			
 	if Input.is_action_just_pressed("place") and mirrorsHeld > 0:
@@ -86,17 +100,13 @@ func move(dir):
 	if !ray.is_colliding():
 #		position += inputs[dir] * tileSize
 		move_tween(dir)
-	#else :
-	#	var name = ray.get_collider().name
-	#	if "Mirror" in name:
-	#		onMirror = true
-	#		move_tween(dir)
-	#put extraordinary blocks here
+	else:
+		animation.stop()
 	
 	
 
 func move_tween(dir):
-	animation.play("walk_h")
+	animation.play()
 	tween.interpolate_property(self, "position",
 		position, position + dir * tileSize,
 		1.0/speed, Tween.TRANS_LINEAR)
@@ -107,7 +117,7 @@ func move_tween(dir):
 
 func _on_Tween_tween_completed(object, key):
 	get_tree().call_group("map", "sendCords", position, oldDir)
-	
+	animation.stop()
 
 
 func _on_Area2D_area_entered(area):
