@@ -25,7 +25,7 @@ func sendCordsNoNotify(cords):
 	var rtn = get_cell(pos.x, pos.y)
 	print(pos)
 
-func spawnObject(cords):
+func spawnObject(cords, dir):
 	var pos = world_to_map(cords)
 	var scene = load("res://scenes/Mirror.tscn")
 	var secondMirror = load("res://scenes/GhostPortal.tscn")
@@ -33,6 +33,8 @@ func spawnObject(cords):
 	var mirObject = scene.instance()
 	portalObj.place(cords)
 	mirObject.place(cords)
+	portalObj.ChangeFace(dir)
+	mirObject.ChangeFace(dir)
 	add_child(mirObject)
 	mirObject.add_child(portalObj)
 	

@@ -3,6 +3,7 @@
 [ext_resource path="res://Sprite_Sheet_1.png" type="Texture" id=1]
 [ext_resource path="res://scenes/PlayerSnap.gd" type="Script" id=2]
 
+
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 1 )
 region = Rect2( 96, 0, 16, 16 )
@@ -12,6 +13,7 @@ atlas = ExtResource( 1 )
 region = Rect2( 112, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=3]
+
 atlas = ExtResource( 1 )
 region = Rect2( 64, 0, 16, 16 )
 
@@ -19,7 +21,7 @@ region = Rect2( 64, 0, 16, 16 )
 atlas = ExtResource( 1 )
 region = Rect2( 48, 0, 16, 16 )
 
-[sub_resource type="SpriteFrames" id=4]
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 5 ), SubResource( 6 ) ],
 "loop": true,
@@ -28,11 +30,12 @@ animations = [ {
 }, {
 "frames": [ SubResource( 3 ), SubResource( 2 ), SubResource( 3 ), SubResource( 2 ) ],
 "loop": true,
+
 "name": "walk_h",
 "speed": 10.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 8, 8 )
 
 [sub_resource type="Animation" id=7]
@@ -64,10 +67,11 @@ __meta__ = {
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -0.141539 )
 frames = SubResource( 4 )
+
 animation = "walk_h"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+shape = SubResource( 4 )
 
 [node name="Tween" type="Tween" parent="."]
 

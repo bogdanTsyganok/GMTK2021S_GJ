@@ -80,8 +80,12 @@ func _process(delta):
 			move(inputs[dir])
 			
 	if Input.is_action_just_pressed("place") and mirrorsHeld > 0:
-		mirrorsHeld = mirrorsHeld - 1
-		get_tree().call_group("map", "spawnObject", (position))
+		if ray.is_colliding():
+			var colBody = ray.get_collider()
+			print(colBody.name)
+			if colBody.name == "TileMap":
+				mirrorsHeld = mirrorsHeld - 1
+				get_tree().call_group("map", "spawnObject", position, oldDir)
 
 func addMirror():
 	mirrorsHeld = mirrorsHeld + 1
@@ -119,8 +123,8 @@ func move_tween(dir):
 
 
 func _on_Tween_tween_completed(object, key):
-	get_tree().call_group("map", "sendCords", (position))
-	animation.stop()
+	get_tree().call_group("map", "sendCords", position, oldDir)
+
 	
 
 
