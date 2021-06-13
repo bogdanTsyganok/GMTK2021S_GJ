@@ -22,7 +22,7 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
 
-[node name="Area2D" type="Area2D" groups=[
+[node name="Area2D2" type="Area2D" groups=[
 "player",
 ]]
 script = ExtResource( 2 )
