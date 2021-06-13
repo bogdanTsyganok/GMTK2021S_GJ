@@ -27,7 +27,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="ParticlesMaterial" id=7]
+[sub_resource type="ParticlesMaterial" id=6]
 emission_shape = 1
 emission_sphere_radius = 8.44
 flag_disable_z = true
@@ -37,7 +37,7 @@ orbit_velocity_random = 0.0
 linear_accel = -11.63
 color = Color( 0.690196, 0.0745098, 0.835294, 0.321569 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 8, 8 )
 
 [node name="Portal" type="Area2D"]
@@ -48,7 +48,7 @@ frames = SubResource( 5 )
 
 [node name="Particles2D" type="Particles2D" parent="AnimatedSprite"]
 visibility_rect = Rect2( -100.179, -100, 200, 200 )
-process_material = SubResource( 7 )
+process_material = SubResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 6 )
+shape = SubResource( 7 )
