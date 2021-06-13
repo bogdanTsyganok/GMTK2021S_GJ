@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8.17811, 8.42518 )
 
-[node name="Area2D" type="Area2D" groups=[
+[node name="Area2D2" type="Area2D" groups=[
 "player",
 ]]
 script = ExtResource( 2 )

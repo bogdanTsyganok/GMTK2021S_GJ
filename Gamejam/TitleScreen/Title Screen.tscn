@@ -1,0 +1,84 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://TitleScreen/BitFont12.tres" type="DynamicFont" id=1]
+[ext_resource path="res://TitleScreen/Title Screen.gd" type="Script" id=2]
+[ext_resource path="res://fadeIn/FadeIn.tscn" type="PackedScene" id=3]
+
+[node name="TitleScreen" type="Control"]
+anchor_right = 1.00088
+anchor_bottom = 0.99897
+margin_right = -471.111
+margin_bottom = -223.259
+rect_scale = Vector2( 1.59484, 1.44297 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Title" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -325.513
+margin_top = 51.0
+margin_right = -129.513
+margin_bottom = 63.0
+rect_scale = Vector2( 3.71408, 3.89371 )
+custom_fonts/font = ExtResource( 1 )
+text = "Ghost Dungeon"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartButton" type="Button" parent="."]
+margin_left = 309.134
+margin_top = 186.893
+margin_right = 471.134
+margin_bottom = 226.893
+rect_pivot_offset = Vector2( 109.729, 139.923 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartButtonLabel" type="Label" parent="StartButton"]
+margin_right = 163.0
+margin_bottom = 42.0
+custom_fonts/font = ExtResource( 1 )
+text = "Start"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QuitButton" type="Button" parent="."]
+anchor_left = 0.076
+anchor_top = 0.314
+anchor_right = 0.282
+anchor_bottom = 0.394
+margin_left = 248.684
+margin_top = 124.847
+margin_right = 248.944
+margin_bottom = 127.167
+rect_pivot_offset = Vector2( 74.0994, 18.8845 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QuitButtonLabel" type="Label" parent="QuitButton"]
+margin_right = 163.0
+margin_bottom = 42.0
+custom_fonts/font = ExtResource( 1 )
+text = "Quit"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FadeIn" parent="." instance=ExtResource( 3 )]
+visible = false
+
+[connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_QuitButton_pressed"]
+[connection signal="fade_finished" from="FadeIn" to="." method="_on_FadeIn_fade_finished"]
