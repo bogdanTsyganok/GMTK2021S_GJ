@@ -46,6 +46,8 @@ func _process(delta):
 			var body = floorRay.get_collider()
 			if "Portal" in body.name:
 				get_tree().call_group("map","teleport", position)
+			else:
+				body.use()
 	
 	for dir in inputs.keys():
 		if Input.is_action_pressed(dir):
