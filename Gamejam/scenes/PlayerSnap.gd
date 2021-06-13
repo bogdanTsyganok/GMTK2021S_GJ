@@ -18,6 +18,8 @@ onready var ray = $RayCast2D
 onready var floorRay = $floorCheck
 onready var tween = $Tween
 
+onready var animation = $AnimatedSprite
+
 export var speed = 3
 export var selected = true
 
@@ -90,6 +92,7 @@ func move(dir):
 	
 
 func move_tween(dir):
+	animation.play("walk_h")
 	tween.interpolate_property(self, "position",
 		position, position + dir * tileSize,
 		1.0/speed, Tween.TRANS_LINEAR)
@@ -100,6 +103,7 @@ func move_tween(dir):
 
 func _on_Tween_tween_completed(object, key):
 	get_tree().call_group("map", "sendCords", (position))
+	
 
 
 func _on_Area2D_area_entered(area):
