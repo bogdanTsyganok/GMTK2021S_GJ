@@ -37,11 +37,11 @@ __meta__ = {
 }
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 440, 280 )
+position = Vector2( 424, 408 )
 speed = 10
 
 [node name="Ghost" parent="." instance=ExtResource( 5 )]
-position = Vector2( 632, 280 )
+position = Vector2( 616, 408 )
 speed = 10
 
 [node name="TileMap" parent="." instance=ExtResource( 3 )]

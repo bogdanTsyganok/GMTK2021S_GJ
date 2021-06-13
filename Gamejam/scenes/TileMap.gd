@@ -13,17 +13,19 @@ var endCheck = 0
 func _ready():
 	pass # Replace with function body.
 
-func end():
-	get_tree().call_group("endGate", "check")
-	print("swap")
-	
-func actualEnd():
+func addToEnd():
 	endCheck = endCheck + 1
 	
+func subFromEnd():
+	endCheck = endCheck - 1
+
+func end():
+	get_tree().call_group("endGate", "check")
+	
+func actualEnd():
 	if endCheck == 2:
 		print("good") #signal end level here
-	else:
-		endCheck = 0
+		
 
 func sendCords(cords):
 	var pos = world_to_map(cords)

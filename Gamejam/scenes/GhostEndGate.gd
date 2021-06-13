@@ -26,7 +26,10 @@ func check():
 
 func _on_GEnd_area_entered(area):
 	full = area
+	get_tree().call_group("map", "addToEnd")
 
 
 func _on_GEnd_area_exited(area):
 	full = null
+	get_tree().call_group("map", "subFromEnd")
+	
